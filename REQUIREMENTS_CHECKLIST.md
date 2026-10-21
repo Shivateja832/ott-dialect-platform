@@ -40,3 +40,16 @@ The latest full test run passed all 37 tests. `npm run replay` completed with 12
 ## Accurate completion statement
 
 The repository is published to GitHub and deployed to Render as a hosted synthetic replay demo. The public health check is passing. The engine has regression coverage for twelve configurable rule entries, but this is not the challenge's exact goal catalogue: the brief only supplies two examples and notes underspecified/missing-signal items. The actual event/profile/catalogue/pilot pack and timed replay were not included, so exact feed mapping and challenge replay certification cannot be claimed. Challenge-permitted replay mode is the deployed scope.
+
+## Root cause of unverified items
+
+The remaining verification boundary is missing challenge evidence, not an undiscovered set of application features:
+
+| Unverified item | Root cause | What the current project does |
+|---|---|---|
+| Exact twelve-goal behavior | The brief names two examples and describes (but does not define) the other candidates, including underspecified rules and a missing signal. | Accepts data-driven rules; disables explicitly underspecified or unavailable-signal rules; tests a twelve-entry rule set. It does not invent missing rule semantics. |
+| Supplied replay acceptance | The timed replay program and its actual triggers/outcome simulator were not supplied. | Runs the normalized trigger sequence and tests representative surprise cases (late/duplicate/out-of-order, conflicts, rule correction, dependency failure, untrusted catalogue text). |
+| Actual pilot impact | The pilot assignment/outcome records and internal report were not supplied. | Produces an intention-to-treat randomized holdout report on the generated demo outcomes; does not claim those synthetic outcomes as pilot results. |
+| Render production capacity | A local benchmark cannot establish hosted service limits. | The public demo is health-checked; a local 10-minute synthetic run passed at 30 opens/second. The challenge does not specify an exact Render plan or numeric production baseline. |
+
+Real provider delivery and multi-worker database storage are not required by the brief's evaluator-friendly mock/replay constraint and are not counted as challenge gaps. An overall percentage has no defined weighting in the brief; any single percentage is an estimate, not a test result. The previous 80% figure was a rough estimate, not a measured score.
