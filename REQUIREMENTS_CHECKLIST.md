@@ -1,6 +1,6 @@
 # Challenge requirements verification
 
-This check uses the original 279-line challenge brief retained in the conversation attachment and the files currently in this project. “Implemented” describes code exercised with generated or normalized test data; it does not imply certification against the challenge data pack.
+This check uses the supplied 279-line challenge brief and the files currently in this project. The brief specifies evaluation category weights, but does not provide a scoring formula or objective thresholds for assigning points within each category. “Implemented” describes code exercised with generated or normalized test data; it does not imply certification against unavailable challenge data.
 
 ## Challenge capabilities
 
@@ -29,7 +29,7 @@ This check uses the original 279-line challenge brief retained in the conversati
 | Automated tests for late/duplicate, conflicts, failure, and correction | Implemented | Test suite covers these cases plus messaging policy, generic goals, hero slots, and external-pack replay. |
 | Sample decisions, actions, no-action reasons, outcomes, impact | Implemented for synthetic fixture | `sample_run/` contains replay artifacts; generated outcomes are simulated. |
 | Architecture, AI collaboration, limitations notes | Implemented | See the corresponding project documents. |
-| Actual 30-day pack, all 12 goal rules, intervention catalogue, pilot results, live replay script | **Not supplied / not verified** | The brief was available, but those data assets were not present in the workspace. Provide them to certify exact rule definitions, feed mappings, and surprise-event behavior. |
+| Actual 30-day pack, all 12 goal rules, intervention catalogue, pilot results, live replay script | **Not included / not verified** | The supplied attachment is the challenge brief, which describes these assets but does not contain the source files or pilot records. The separate package attachment is npm metadata. Exact rule definitions, feed mappings, pilot analysis, and surprise-event behavior therefore cannot be certified from the available inputs. |
 | Render blueprint | Implemented | `render.yaml` defines a web service and health check. |
 | Public cloud deployment | Deployed and health-checked | GitHub repository: [ott-dialect-platform](https://github.com/Shivateja832/ott-dialect-platform). Render service: [ott-dialect-platform-demo.onrender.com](https://ott-dialect-platform-demo.onrender.com). `/api/health` returned `status: ok` in `generated_mock` mode. |
 
@@ -52,4 +52,4 @@ The remaining verification boundary is missing challenge evidence, not an undisc
 | Actual pilot impact | The pilot assignment/outcome records and internal report were not supplied. | Produces an intention-to-treat randomized holdout report on the generated demo outcomes; does not claim those synthetic outcomes as pilot results. |
 | Render production capacity | A local benchmark cannot establish hosted service limits. | The public demo is health-checked; a local 10-minute synthetic run passed at 30 opens/second. The challenge does not specify an exact Render plan or numeric production baseline. |
 
-Real provider delivery and multi-worker database storage are not required by the brief's evaluator-friendly mock/replay constraint and are not counted as challenge gaps. An overall percentage has no defined weighting in the brief; any single percentage is an estimate, not a test result. The previous 80% figure was a rough estimate, not a measured score.
+Real provider delivery and multi-worker database storage are not required by the brief's evaluator-friendly mock/replay constraint and are not counted as challenge gaps. The brief's category weights (20%, 15%, 15%, 15%, 15%, 10%, 10%) sum to 100%, but they are not a completion formula: the brief supplies no per-category scoring rules or objective pass thresholds. This project therefore does not claim an overall completion percentage or recruiter score. Report test results separately (the latest run passed 38/38 tests); a test pass rate is not an application-completion score.
