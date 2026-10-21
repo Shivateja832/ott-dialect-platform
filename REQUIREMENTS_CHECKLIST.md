@@ -31,7 +31,7 @@ This check uses the original 279-line challenge brief retained in the conversati
 | Architecture, AI collaboration, limitations notes | Implemented | See the corresponding project documents. |
 | Actual 30-day pack, all 12 goal rules, intervention catalogue, pilot results, live replay script | **Not supplied / not verified** | The brief was available, but those data assets were not present in the workspace. Provide them to certify exact rule definitions, feed mappings, and surprise-event behavior. |
 | Render blueprint | Implemented | `render.yaml` defines a web service and health check. |
-| Public cloud deployment | **Not done** | No Git remote or Render authorization was provided; there is no public URL to claim. |
+| Public cloud deployment | **Not verified** | Application files are published to [github.com/Shivateja832/ott-dialect-platform](https://github.com/Shivateja832/ott-dialect-platform) at commit `b8bfdb0`. No Render service or public URL has been verified. |
 
 ## Local verification
 
@@ -39,4 +39,4 @@ The latest full test run passed all 37 tests. `npm run replay` completed with 12
 
 ## Accurate completion statement
 
-The repository is a locally runnable, recruiter-demo implementation with synthetic replay, channel-policy checks, data-driven rules, and a deployment blueprint. It is **not fully certified against every challenge input and is not deployed**. The exact 12-goal catalogue, raw challenge data/live replay, real provider approvals, and repository/Render authorization remain external blockers; presenting them as completed would be inaccurate.
+The repository is a locally runnable, recruiter-demo implementation with synthetic replay, channel-policy checks, data-driven rules, and a deployment blueprint. The code has been published to GitHub, but it is **not certified against unavailable challenge input files and is not confirmed deployed**. The exact 12-goal definitions and real replay cannot be inferred from the brief's material-description table. A Render service and public health-check URL still need verification.

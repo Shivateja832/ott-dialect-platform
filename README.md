@@ -51,7 +51,7 @@ Message consent records use `{ id, viewer_id, channel, granted, received_at }`, 
 
 ## Deployment status
 
-`render.yaml` configures a Node web service and `/api/health` check. This workspace has no Git remote, Render account authorization, or public service URL, so the application has **not** been deployed. Connect the repository and authorize Render before claiming a hosted deployment.
+`render.yaml` configures a Node web service and `/api/health` check. The application source is published at [github.com/Shivateja832/ott-dialect-platform](https://github.com/Shivateja832/ott-dialect-platform). A Render service and public URL have not been verified, so the application is **not confirmed deployed**. Create the service from the Render Blueprint and verify its `/api/health` endpoint before claiming a hosted deployment.
 
 ## Requirement verification
 
