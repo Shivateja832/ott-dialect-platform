@@ -239,6 +239,40 @@ test("data-driven goal rules support identifiers beyond built-in examples and di
   assert.equal(unavailableDecision.reason, "no_evidence_backed_eligible_goal");
 });
 
+test("each of twelve configured goal rules can independently pass eligibility selection", async (t) => {
+  const rules = Object.fromEntries(Array.from({ length: 12 }, (_, index) => {
+    const id = `configured_goal_${String(index + 1).padStart(2, "0")}`;
+    return [id, {
+      id,
+      version: 1,
+      evidence: `goal_success_${index + 1}`,
+      windowHours: 72,
+      priority: index + 1,
+      eligibility: {
+        requiresSignup: true,
+        requireEventTypes: [`eligibility_marker_${index + 1}`]
+      }
+    }];
+  }));
+
+  for (let index = 0; index < 12; index++) {
+    const input = fixture(`V-GOAL-CANDIDATE-${index + 1}`);
+    const markerType = `eligibility_marker_${index + 1}`;
+    input.pack.events.push({
+      id: `E-${markerType}`,
+      viewer_id: input.trigger.viewer_id,
+      type: markerType,
+      occurred_at: "2026-09-12T17:30:00.000Z",
+      received_at: "2026-09-12T17:30:00.000Z"
+    });
+    input.pack.goalRules = structuredClone(rules);
+    const engine = withEngine(t, input.pack);
+    const decision = await engine.processTrigger(input.trigger);
+    assert.equal(decision.goal?.id, `configured_goal_${String(index + 1).padStart(2, "0")}`);
+    assert.equal(decision.goal?.success_signal, `goal_success_${index + 1}`);
+  }
+});
+
 test("corrected goal rule updates active plan version and deadline on next trigger", async (t) => {
   const input = fixture();
   const engine = withEngine(t, input.pack);
