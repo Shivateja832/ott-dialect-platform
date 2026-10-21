@@ -8,6 +8,8 @@
     "replay": "node src/cli.js replay --out sample_run",
     "start": "node src/server.js",
     "load-test": "node scripts/benchmark.mjs",
+    "load-test:sustained": "node scripts/sustained-load.mjs",
+    "load-test:sustained": "node scripts/sustained-load.mjs",
     "test": "node --test"
   },
   "engines": {

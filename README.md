@@ -33,6 +33,14 @@ npm run load-test
 
 The benchmark defaults to 1,000 unique viewer opens in one burst and prints throughput and decision latency. This is a local synthetic benchmark, not a Render or production capacity guarantee. To change the viewer count, run `node scripts\benchmark.mjs 2000`.
 
+Run a sustained synthetic spike benchmark:
+
+```powershell
+npm run load-test:sustained
+```
+
+This runs at three times a configured synthetic baseline (default: 10 baseline opens/second, therefore 30 opens/second) for ten minutes, then reports achieved rate and decision latencies. It uses generated data and the single-process local file store; it is not a Render-scale or production-database certification. Short validation runs can override values, for example `node scripts\sustained-load.mjs --baseline-opens-per-second=1 --duration-seconds=2 --viewer-count=20`.
+
 ## Replaying a supplied pack
 
 The challenge data files and timed replay script were not present in this workspace. To replay the supplied files, normalize them to one JSON document and run:
@@ -48,6 +56,18 @@ Each goal rule needs `id`, `version`, `evidence` (the success event type), `wind
 To serve a separate replay output in the dashboard, set `REPLAY_DIR` before starting the server, for example: `$env:REPLAY_DIR='.\pack_run'; npm start` in PowerShell.
 
 Message consent records use `{ id, viewer_id, channel, granted, received_at }`, where `channel` is `PUSH`, `WHATSAPP`, or `IN_APP`. Templates must be explicitly approved and match the viewer's resolved dialect and language. The replay only records simulated delivery; live providers, credentials, approved vendor templates, and a production action sink are not included.
+
+## Optional real-provider connection
+
+The challenge accepts mock/replay mode, so live delivery is not required to run or evaluate this project. To add it safely for an OTT deployment:
+
+1. Choose the OTT app's in-app action API (and separate push/WhatsApp providers only if those channels are needed).
+2. Provide the provider's public API documentation, sandbox endpoint, request/response example with dummy values, authentication method, idempotency support, and delivery-status callback behavior.
+3. Configure test credentials directly in Render environment settings; never commit them or paste them into chat. Keep sandbox and production credentials separate.
+4. Implement and test a delivery adapter with `decision_id` as the idempotency key. Preserve the existing consent, quiet-hour, daily-cap, dialect/language, template-approval, and independent-verification checks before any send.
+5. Test only against a provider sandbox first. Enable production delivery only after approved templates, real consent mappings, and a rollback/disable switch are confirmed.
+
+No provider is selected or configured in this demo, so it does not send messages or mutate a live OTT application.
 
 ## Deployment status
 
