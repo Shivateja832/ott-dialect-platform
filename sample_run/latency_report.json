@@ -2,8 +2,8 @@
   "decisions": 121,
   "unique_trigger_latencies": 121,
   "trigger_attempts": 122,
-  "max_ms": 227,
-  "p95_ms": 33,
+  "max_ms": 1742,
+  "p95_ms": 17,
   "budget_ms": 60000,
   "within_budget": true,
   "counters": {
@@ -14,5 +14,5 @@
     "toolCalls": 120,
     "callBudgetViolations": 0
   },
-  "elapsed_ms": 4900
+  "elapsed_ms": 7544
 }

@@ -735,7 +735,7 @@ export class AgentEngine {
             signal: `event:${event.id}`,
             judged_at: trigger.received_at
           };
-          this.store.appendOutcome(outcome);
+          await this.store.appendOutcome(outcome);
           state.outcomes = [...(state.outcomes ?? []), outcome].slice(-100);
           state.lessons = [...(state.lessons ?? []), `${goal.id} succeeded from ${outcome.signal}.`].slice(-50);
           state.activeGoal = null;
@@ -749,7 +749,7 @@ export class AgentEngine {
             reason: "deadline_passed_without_attributable_signal",
             judged_at: trigger.received_at
           };
-          this.store.appendOutcome(outcome);
+          await this.store.appendOutcome(outcome);
           state.outcomes = [...(state.outcomes ?? []), outcome].slice(-100);
           state.lessons = [...(state.lessons ?? []), `${goal.id} failed because its deadline passed without an attributable signal.`].slice(-50);
           state.activeGoal = null;
@@ -763,7 +763,7 @@ export class AgentEngine {
             reason: "current_evidence_no_longer_meets_goal_rule",
             judged_at: trigger.received_at
           };
-          this.store.appendOutcome(outcome);
+          await this.store.appendOutcome(outcome);
           state.outcomes = [...(state.outcomes ?? []), outcome].slice(-100);
           state.lessons = [...(state.lessons ?? []), `${goal.id} was closed after current evidence no longer met its corrected rule.`].slice(-50);
           state.activeGoal = null;
@@ -868,7 +868,7 @@ export class AgentEngine {
           delivery_mode: "mock_replay",
           delivery_status: "SIMULATED"
         };
-        this.store.appendAction(recordedAction);
+        await this.store.appendAction(recordedAction);
         state.actions = [...(state.actions ?? []), recordedAction].slice(-100);
       }
     }
@@ -950,8 +950,8 @@ export class AgentEngine {
     state.fact_snapshot = facts?.facts ?? state.fact_snapshot ?? [];
     state.dialect_conflicts = facts?.conflicts ?? state.dialect_conflicts ?? [];
     state.processed_trigger_ids = [...new Set([...(state.processed_trigger_ids ?? []), trigger.id])].slice(-500);
-    this.store.saveViewerState(trigger.viewer_id, state);
-    this.store.appendDecision(decision);
+    await this.store.saveViewerState(trigger.viewer_id, state);
+    await this.store.appendDecision(decision);
     this.decisions.push(decision);
     return decision;
   }
@@ -986,7 +986,7 @@ export class AgentEngine {
     return { goal_id: correction.goal_id, version: correction.version, refresh_policy: "next_viewer_trigger" };
   }
 
-  judgeOutcomes(asOf) {
+  async judgeOutcomes(asOf) {
     const now = Date.parse(asOf);
     if (!Number.isFinite(now)) throw new Error("Outcome judgment time must be a valid timestamp.");
     for (const viewerId of this.store.listViewerIds()) {
@@ -1010,12 +1010,12 @@ export class AgentEngine {
         reason: signal ? null : "deadline_passed_without_success_signal",
         judged_at: asOf
       };
-      this.store.appendOutcome(outcome);
+      await this.store.appendOutcome(outcome);
       state.outcomes = [...(state.outcomes ?? []), outcome].slice(-100);
       state.lessons = [...(state.lessons ?? []),
         signal ? `${goal.id} succeeded from event:${signal.id}.` : `${goal.id} failed without an attributable success signal.`].slice(-50);
       state.activeGoal = null;
-      this.store.saveViewerState(viewerId, state);
+      await this.store.saveViewerState(viewerId, state);
     }
   }
 }

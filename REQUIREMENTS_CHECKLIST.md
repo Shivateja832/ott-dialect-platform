@@ -35,7 +35,7 @@ This check uses the original 279-line challenge brief retained in the conversati
 
 ## Local verification
 
-The latest full test run passed all 37 tests. `npm run replay` completed with 121 decisions and 115 outcomes. The synthetic 1,000-open burst and hosted health check passed. `npm run load-test:sustained` provides the ten-minute local synthetic triple-traffic scenario; its measured results are machine-specific and do not certify Render capacity or the missing live replay.
+The latest full test run passed all 37 tests. `npm run replay` completed with 121 decisions and 115 outcomes. The synthetic 1,000-open burst and hosted health check passed. A full local ten-minute synthetic test completed 18,000/18,000 decisions at 30 opens/second (three times the configured 10 opens/second baseline), with no failures, p95 end-to-end handling latency 450 ms and max 5.05 seconds. This single-machine FileStore test does not certify Render capacity or the missing supplied replay.
 
 ## Accurate completion statement
 

@@ -541,7 +541,7 @@ test("outcomes arriving after judgment time are not attributed", async (t) => {
     received_at: "2026-09-21T00:00:00.000Z"
   });
   engine.refreshIndexes();
-  engine.judgeOutcomes("2026-09-20T00:00:00.000Z");
+  await engine.judgeOutcomes("2026-09-20T00:00:00.000Z");
   const outcome = engine.store.allOutcomes()[0];
   assert.equal(outcome.status, "FAILED");
   assert.equal(outcome.signal, null);

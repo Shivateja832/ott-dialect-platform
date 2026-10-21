@@ -201,7 +201,7 @@ async function replay(out, packPath) {
   const endAt = generated
     ? new Date(Date.parse(pack.triggers.at(-1).received_at) + 8 * 24 * 60 * 60_000).toISOString()
     : pack.judgment_at;
-  if (endAt) engine.judgeOutcomes(endAt);
+  if (endAt) await engine.judgeOutcomes(endAt);
 
   const decisions = store.allDecisions();
   const outcomes = store.allOutcomes();

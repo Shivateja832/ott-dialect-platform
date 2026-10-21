@@ -1,5 +1,6 @@
-import { mkdirSync, readFileSync, appendFileSync, writeFileSync, renameSync, existsSync, readdirSync } from "node:fs";
+import { mkdirSync, readFileSync, writeFileSync, existsSync, readdirSync } from "node:fs";
 import { join } from "node:path";
+import { appendFile, rename, writeFile } from "node:fs/promises";
 
 function readJsonl(path) {
   if (!existsSync(path)) return [];
@@ -16,12 +17,16 @@ export class FileStore {
       if (!existsSync(path)) writeFileSync(path, "", "utf8");
     }
     this.triggerIds = new Set();
-    for (const row of readJsonl(join(root, "decisions.jsonl"))) {
+    this.decisions = readJsonl(join(root, "decisions.jsonl"));
+    for (const row of this.decisions) {
       if (row.trigger?.id && row.viewer_id) {
         this.triggerIds.add(this.triggerKey(row.viewer_id, row.trigger.id));
       }
     }
-    this.decisions = readJsonl(join(root, "decisions.jsonl"));
+    this.actions = readJsonl(join(root, "actions.jsonl"));
+    this.outcomes = readJsonl(join(root, "outcomes.jsonl"));
+    this.viewerStates = new Map();
+    this.logTails = new Map();
   }
 
   statePath(viewerId) {
@@ -30,9 +35,15 @@ export class FileStore {
   }
 
   getViewerState(viewerId) {
+    const cached = this.viewerStates.get(viewerId);
+    if (cached) return structuredClone(cached);
     const path = this.statePath(viewerId);
-    if (existsSync(path)) return JSON.parse(readFileSync(path, "utf8"));
-    return {
+    if (existsSync(path)) {
+      const state = JSON.parse(readFileSync(path, "utf8"));
+      this.viewerStates.set(viewerId, state);
+      return structuredClone(state);
+    }
+    const state = {
       viewer_id: viewerId,
       experimentGroup: null,
       activeGoal: null,
@@ -45,13 +56,16 @@ export class FileStore {
       fact_snapshot: [],
       dialect_conflicts: []
     };
+    this.viewerStates.set(viewerId, state);
+    return structuredClone(state);
   }
 
-  saveViewerState(viewerId, state) {
+  async saveViewerState(viewerId, state) {
     const path = this.statePath(viewerId);
     const tempPath = `${path}.tmp`;
-    writeFileSync(tempPath, `${JSON.stringify(state, null, 2)}\n`, "utf8");
-    renameSync(tempPath, path);
+    await writeFile(tempPath, `${JSON.stringify(state, null, 2)}\n`, "utf8");
+    await rename(tempPath, path);
+    this.viewerStates.set(viewerId, state);
   }
 
   triggerKey(viewerId, triggerId) {
@@ -63,23 +77,29 @@ export class FileStore {
   }
 
   append(file, value) {
-    appendFileSync(join(this.root, file), `${JSON.stringify(value)}\n`, "utf8");
+    const path = join(this.root, file);
+    const previous = this.logTails.get(file) ?? Promise.resolve();
+    const pending = previous.then(() => appendFile(path, `${JSON.stringify(value)}\n`, "utf8"));
+    this.logTails.set(file, pending);
+    return pending;
   }
 
-  appendDecision(value) {
-    this.append("decisions.jsonl", value);
+  async appendDecision(value) {
+    await this.append("decisions.jsonl", value);
     if (value.trigger?.id && value.viewer_id) {
       this.triggerIds.add(this.triggerKey(value.viewer_id, value.trigger.id));
     }
     this.decisions.push(value);
   }
 
-  appendAction(value) {
-    this.append("actions.jsonl", value);
+  async appendAction(value) {
+    await this.append("actions.jsonl", value);
+    this.actions.push(value);
   }
 
-  appendOutcome(value) {
-    this.append("outcomes.jsonl", value);
+  async appendOutcome(value) {
+    await this.append("outcomes.jsonl", value);
+    this.outcomes.push(value);
   }
 
   getDecision(id) {
@@ -96,10 +116,10 @@ export class FileStore {
   }
 
   allOutcomes() {
-    return readJsonl(join(this.root, "outcomes.jsonl"));
+    return this.outcomes;
   }
 
   allActions() {
-    return readJsonl(join(this.root, "actions.jsonl"));
+    return this.actions;
   }
 }

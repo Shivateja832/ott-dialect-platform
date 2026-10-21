@@ -59,16 +59,21 @@ async function run() {
         occurred_at: timestamp,
         received_at: timestamp
       };
+      const decisionStarted = performance.now();
       const operation = engine.processTrigger(trigger).then((decision) => {
-        latencies.push(decision.decided_in_ms ?? 0);
+        latencies.push(performance.now() - decisionStarted);
       }).catch((error) => {
         failures++;
         console.error(`Decision ${sequence} failed: ${error.message}`);
       }).finally(() => inFlight.delete(operation));
       inFlight.add(operation);
     };
-    issueOpen();
-    timer = setInterval(issueOpen, intervalMs);
+    const issueDueOpens = () => {
+      const dueCount = Math.min(targetOpens, Math.floor((performance.now() - started) / intervalMs) + 1);
+      while (issued < dueCount) issueOpen();
+    };
+    issueDueOpens();
+    timer = setInterval(issueDueOpens, intervalMs);
     await new Promise((resolve) => setTimeout(resolve, options.durationSeconds * 1000 + intervalMs + 10));
     clearInterval(timer);
     await Promise.all(inFlight);
