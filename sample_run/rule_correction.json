@@ -1,0 +1,16 @@
+{
+  "goal_id": "first_full_episode_3d",
+  "version": 3,
+  "refresh_policy": "next_viewer_trigger",
+  "applied_at": "2026-09-12T18:01:40.000Z",
+  "correction": {
+    "goal_id": "first_full_episode_3d",
+    "version": 3,
+    "evidence": "episode_completed",
+    "windowHours": 48,
+    "condition": {
+      "minimum_duration_seconds": 1800
+    },
+    "description": "Corrected replay rule: complete a first full episode within 48 hours."
+  }
+}

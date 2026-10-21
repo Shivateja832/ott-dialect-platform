@@ -1,0 +1,82 @@
+{
+  "viewer_id": "V-0050",
+  "experimentGroup": "treatment",
+  "activeGoal": null,
+  "last_action_at": null,
+  "processed_trigger_ids": [
+    "E-OPEN-0050"
+  ],
+  "decision_ids": [
+    "D-058c669626d0"
+  ],
+  "actions": [],
+  "outcomes": [],
+  "lessons": [],
+  "fact_snapshot": [
+    {
+      "key": "signup",
+      "value": "2026-09-12T17:01:38.000Z",
+      "source": "event:E-SIGNUP-V-0050",
+      "observed_at": "2026-09-12T17:01:41.000Z",
+      "freshness": "59m"
+    },
+    {
+      "key": "subscription_status",
+      "value": "trial",
+      "source": "profile:P-V-0050-20260912",
+      "observed_at": "2026-09-11T18:01:38.000Z",
+      "freshness": "warehouse snapshot; observed 1d ago"
+    },
+    {
+      "key": "dialect_profile",
+      "value": "d2",
+      "source": "profile:P-V-0050-20260912",
+      "observed_at": "2026-09-11T18:01:38.000Z",
+      "freshness": "warehouse snapshot; observed 1d ago"
+    },
+    {
+      "key": "paid",
+      "value": true,
+      "source": "event:E-PURCHASE-V-0050",
+      "observed_at": "2026-09-12T17:21:38.000Z",
+      "freshness": "event stream"
+    },
+    {
+      "key": "effective_paid",
+      "value": true,
+      "source": "event:E-PURCHASE-V-0050",
+      "observed_at": "2026-09-12T17:21:38.000Z",
+      "freshness": "event stream"
+    },
+    {
+      "key": "dialect",
+      "value": "d2",
+      "source": "app_setting:E-OPEN-0050",
+      "observed_at": "2026-09-12T18:01:38.000Z",
+      "freshness": "current trigger"
+    },
+    {
+      "key": "language",
+      "value": "en",
+      "source": "app_setting:E-OPEN-0050",
+      "observed_at": "2026-09-12T18:01:38.000Z",
+      "freshness": "current trigger"
+    },
+    {
+      "key": "time_zone",
+      "value": "America/Los_Angeles",
+      "source": "app_setting:E-OPEN-0050",
+      "observed_at": "2026-09-12T18:01:38.000Z",
+      "freshness": "current trigger"
+    },
+    {
+      "key": "consent_whatsapp",
+      "value": true,
+      "source": "consent:C-V-0050-WHATSAPP",
+      "observed_at": "2026-09-12T17:31:38.000Z",
+      "freshness": "latest explicit consent state received by decision time"
+    }
+  ],
+  "dialect_conflicts": [],
+  "last_trigger_at": "2026-09-12T18:01:38.000Z"
+}

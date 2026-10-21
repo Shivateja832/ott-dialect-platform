@@ -1,0 +1,18 @@
+{
+  "mode": "generated_mock",
+  "pack_sha256": null,
+  "viewer_count": 120,
+  "trigger_count": 121,
+  "fixture_cases": [
+    "late_offline_open",
+    "duplicate_open",
+    "profile_conflict",
+    "three_dialect_conflict",
+    "purchase_after_open",
+    "rule_correction",
+    "dependency_failure",
+    "prompt_injection_catalogue_text",
+    "randomized_holdout"
+  ],
+  "note": "Generated deterministic synthetic data; no live audience or external provider is used."
+}

@@ -1,0 +1,105 @@
+{
+  "viewer_id": "V-0111",
+  "experimentGroup": "treatment",
+  "activeGoal": null,
+  "last_action_at": "2026-09-12T18:03:40.000Z",
+  "processed_trigger_ids": [
+    "E-OPEN-0111"
+  ],
+  "decision_ids": [
+    "D-3c6c1e603e69"
+  ],
+  "actions": [
+    {
+      "action_id": "A-3c6c1e603e69",
+      "idempotency_key": "D-3c6c1e603e69",
+      "viewer_id": "V-0111",
+      "decision_id": "D-3c6c1e603e69",
+      "action": "IN_APP",
+      "template_id": "TPL-IN_APP-3",
+      "content": [
+        "template:TPL-IN_APP-3"
+      ],
+      "dialect": "d3",
+      "language": "en",
+      "created_at": "2026-09-12T18:03:40.000Z",
+      "delivery_mode": "mock_replay",
+      "delivery_status": "SIMULATED"
+    }
+  ],
+  "outcomes": [
+    {
+      "outcome_id": "O-77af3e23c98a",
+      "viewer_id": "V-0111",
+      "goal_id": "first_full_episode_3d",
+      "status": "SUCCEEDED",
+      "signal": "event:E-SIMULATED-V-0111",
+      "reason": null,
+      "judged_at": "2026-09-20T18:02:00.000Z"
+    }
+  ],
+  "lessons": [
+    "first_full_episode_3d succeeded from event:E-SIMULATED-V-0111."
+  ],
+  "fact_snapshot": [
+    {
+      "key": "signup",
+      "value": "2026-09-12T17:03:40.000Z",
+      "source": "event:E-SIGNUP-V-0111",
+      "observed_at": "2026-09-12T17:03:43.000Z",
+      "freshness": "59m"
+    },
+    {
+      "key": "subscription_status",
+      "value": "trial",
+      "source": "profile:P-V-0111-20260912",
+      "observed_at": "2026-09-11T18:03:40.000Z",
+      "freshness": "warehouse snapshot; observed 1d ago"
+    },
+    {
+      "key": "dialect_profile",
+      "value": "d3",
+      "source": "profile:P-V-0111-20260912",
+      "observed_at": "2026-09-11T18:03:40.000Z",
+      "freshness": "warehouse snapshot; observed 1d ago"
+    },
+    {
+      "key": "effective_paid",
+      "value": false,
+      "source": "profile:P-V-0111-20260912",
+      "observed_at": "2026-09-11T18:03:40.000Z",
+      "freshness": "warehouse snapshot; observed 1d ago"
+    },
+    {
+      "key": "dialect",
+      "value": "d3",
+      "source": "app_setting:E-OPEN-0111",
+      "observed_at": "2026-09-12T18:03:40.000Z",
+      "freshness": "current trigger"
+    },
+    {
+      "key": "language",
+      "value": "en",
+      "source": "app_setting:E-OPEN-0111",
+      "observed_at": "2026-09-12T18:03:40.000Z",
+      "freshness": "current trigger"
+    },
+    {
+      "key": "time_zone",
+      "value": "America/Los_Angeles",
+      "source": "app_setting:E-OPEN-0111",
+      "observed_at": "2026-09-12T18:03:40.000Z",
+      "freshness": "current trigger"
+    },
+    {
+      "key": "consent_in_app",
+      "value": true,
+      "source": "consent:C-V-0111-IN_APP",
+      "observed_at": "2026-09-12T17:33:40.000Z",
+      "freshness": "latest explicit consent state received by decision time"
+    }
+  ],
+  "dialect_conflicts": [],
+  "last_message_at": "2026-09-12T18:03:40.000Z",
+  "last_trigger_at": "2026-09-12T18:03:40.000Z"
+}

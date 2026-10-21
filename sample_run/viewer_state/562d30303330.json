@@ -1,0 +1,87 @@
+{
+  "viewer_id": "V-0030",
+  "experimentGroup": "holdout",
+  "activeGoal": null,
+  "last_action_at": null,
+  "processed_trigger_ids": [
+    "E-OPEN-0030"
+  ],
+  "decision_ids": [
+    "D-449167c14856"
+  ],
+  "actions": [],
+  "outcomes": [
+    {
+      "outcome_id": "O-6a74227dd939",
+      "viewer_id": "V-0030",
+      "goal_id": "first_full_episode_3d",
+      "status": "SUCCEEDED",
+      "signal": "event:E-SIMULATED-V-0030",
+      "reason": null,
+      "judged_at": "2026-09-20T18:02:00.000Z"
+    }
+  ],
+  "lessons": [
+    "first_full_episode_3d succeeded from event:E-SIMULATED-V-0030."
+  ],
+  "fact_snapshot": [
+    {
+      "key": "signup",
+      "value": "2026-09-12T17:00:58.000Z",
+      "source": "event:E-SIGNUP-V-0030",
+      "observed_at": "2026-09-12T17:01:01.000Z",
+      "freshness": "59m"
+    },
+    {
+      "key": "subscription_status",
+      "value": "trial",
+      "source": "profile:P-V-0030-20260912",
+      "observed_at": "2026-09-11T18:00:58.000Z",
+      "freshness": "warehouse snapshot; observed 1d ago"
+    },
+    {
+      "key": "dialect_profile",
+      "value": "d6",
+      "source": "profile:P-V-0030-20260912",
+      "observed_at": "2026-09-11T18:00:58.000Z",
+      "freshness": "warehouse snapshot; observed 1d ago"
+    },
+    {
+      "key": "effective_paid",
+      "value": false,
+      "source": "profile:P-V-0030-20260912",
+      "observed_at": "2026-09-11T18:00:58.000Z",
+      "freshness": "warehouse snapshot; observed 1d ago"
+    },
+    {
+      "key": "dialect",
+      "value": "d6",
+      "source": "app_setting:E-OPEN-0030",
+      "observed_at": "2026-09-12T18:00:58.000Z",
+      "freshness": "current trigger"
+    },
+    {
+      "key": "language",
+      "value": "en",
+      "source": "app_setting:E-OPEN-0030",
+      "observed_at": "2026-09-12T18:00:58.000Z",
+      "freshness": "current trigger"
+    },
+    {
+      "key": "time_zone",
+      "value": "America/Los_Angeles",
+      "source": "app_setting:E-OPEN-0030",
+      "observed_at": "2026-09-12T18:00:58.000Z",
+      "freshness": "current trigger"
+    },
+    {
+      "key": "consent_in_app",
+      "value": true,
+      "source": "consent:C-V-0030-IN_APP",
+      "observed_at": "2026-09-12T17:30:58.000Z",
+      "freshness": "latest explicit consent state received by decision time"
+    }
+  ],
+  "dialect_conflicts": [],
+  "last_trigger_at": "2026-09-12T18:00:58.000Z"
+}

@@ -1,0 +1,16 @@
+{
+  "name": "ott-dialect-platform-agent",
+  "version": "1.0.0",
+  "private": true,
+  "description": "Evidence-led, per-viewer lifecycle agent with a deterministic synthetic replay",
+  "type": "module",
+  "scripts": {
+    "replay": "node src/cli.js replay --out sample_run",
+    "start": "node src/server.js",
+    "load-test": "node scripts/benchmark.mjs",
+    "test": "node --test"
+  },
+  "engines": {
+    "node": ">=20"
+  }
+}

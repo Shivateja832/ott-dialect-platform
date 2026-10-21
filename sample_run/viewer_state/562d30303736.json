@@ -1,0 +1,80 @@
+{
+  "viewer_id": "V-0076",
+  "experimentGroup": "holdout",
+  "activeGoal": null,
+  "last_action_at": null,
+  "processed_trigger_ids": [
+    "E-OPEN-0076"
+  ],
+  "decision_ids": [
+    "D-e66146ab0b29"
+  ],
+  "actions": [],
+  "outcomes": [
+    {
+      "outcome_id": "O-af9cd29f2ba1",
+      "viewer_id": "V-0076",
+      "goal_id": "first_full_episode_3d",
+      "status": "SUCCEEDED",
+      "signal": "event:E-SIMULATED-V-0076",
+      "reason": null,
+      "judged_at": "2026-09-20T18:02:00.000Z"
+    }
+  ],
+  "lessons": [
+    "first_full_episode_3d succeeded from event:E-SIMULATED-V-0076."
+  ],
+  "fact_snapshot": [
+    {
+      "key": "signup",
+      "value": "2026-09-12T17:02:30.000Z",
+      "source": "event:E-SIGNUP-V-0076",
+      "observed_at": "2026-09-12T17:02:33.000Z",
+      "freshness": "59m"
+    },
+    {
+      "key": "subscription_status",
+      "value": "trial",
+      "source": "profile:P-V-0076-20260912",
+      "observed_at": "2026-09-11T18:02:30.000Z",
+      "freshness": "warehouse snapshot; observed 1d ago"
+    },
+    {
+      "key": "dialect_profile",
+      "value": "d4",
+      "source": "profile:P-V-0076-20260912",
+      "observed_at": "2026-09-11T18:02:30.000Z",
+      "freshness": "warehouse snapshot; observed 1d ago"
+    },
+    {
+      "key": "effective_paid",
+      "value": false,
+      "source": "profile:P-V-0076-20260912",
+      "observed_at": "2026-09-11T18:02:30.000Z",
+      "freshness": "warehouse snapshot; observed 1d ago"
+    },
+    {
+      "key": "dialect",
+      "value": "d4",
+      "source": "app_setting:E-OPEN-0076",
+      "observed_at": "2026-09-12T18:02:30.000Z",
+      "freshness": "current trigger"
+    },
+    {
+      "key": "language",
+      "value": "en",
+      "source": "app_setting:E-OPEN-0076",
+      "observed_at": "2026-09-12T18:02:30.000Z",
+      "freshness": "current trigger"
+    },
+    {
+      "key": "time_zone",
+      "value": "America/Los_Angeles",
+      "source": "app_setting:E-OPEN-0076",
+      "observed_at": "2026-09-12T18:02:30.000Z",
+      "freshness": "current trigger"
+    }
+  ],
+  "dialect_conflicts": [],
+  "last_trigger_at": "2026-09-12T18:02:30.000Z"
+}

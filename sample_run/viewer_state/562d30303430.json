@@ -1,0 +1,80 @@
+{
+  "viewer_id": "V-0040",
+  "experimentGroup": "holdout",
+  "activeGoal": null,
+  "last_action_at": null,
+  "processed_trigger_ids": [
+    "E-OPEN-0040"
+  ],
+  "decision_ids": [
+    "D-9ec06a138ebe"
+  ],
+  "actions": [],
+  "outcomes": [
+    {
+      "outcome_id": "O-5a30143b8097",
+      "viewer_id": "V-0040",
+      "goal_id": "first_full_episode_3d",
+      "status": "FAILED",
+      "signal": null,
+      "reason": "deadline_passed_without_success_signal",
+      "judged_at": "2026-09-20T18:02:00.000Z"
+    }
+  ],
+  "lessons": [
+    "first_full_episode_3d failed without an attributable success signal."
+  ],
+  "fact_snapshot": [
+    {
+      "key": "signup",
+      "value": "2026-09-12T17:01:18.000Z",
+      "source": "event:E-SIGNUP-V-0040",
+      "observed_at": "2026-09-12T17:01:21.000Z",
+      "freshness": "59m"
+    },
+    {
+      "key": "subscription_status",
+      "value": "trial",
+      "source": "profile:P-V-0040-20260912",
+      "observed_at": "2026-09-11T18:01:18.000Z",
+      "freshness": "warehouse snapshot; observed 1d ago"
+    },
+    {
+      "key": "dialect_profile",
+      "value": "d4",
+      "source": "profile:P-V-0040-20260912",
+      "observed_at": "2026-09-11T18:01:18.000Z",
+      "freshness": "warehouse snapshot; observed 1d ago"
+    },
+    {
+      "key": "effective_paid",
+      "value": false,
+      "source": "profile:P-V-0040-20260912",
+      "observed_at": "2026-09-11T18:01:18.000Z",
+      "freshness": "warehouse snapshot; observed 1d ago"
+    },
+    {
+      "key": "dialect",
+      "value": "d4",
+      "source": "app_setting:E-OPEN-0040",
+      "observed_at": "2026-09-12T18:01:18.000Z",
+      "freshness": "current trigger"
+    },
+    {
+      "key": "language",
+      "value": "en",
+      "source": "app_setting:E-OPEN-0040",
+      "observed_at": "2026-09-12T18:01:18.000Z",
+      "freshness": "current trigger"
+    },
+    {
+      "key": "time_zone",
+      "value": "America/Los_Angeles",
+      "source": "app_setting:E-OPEN-0040",
+      "observed_at": "2026-09-12T18:01:18.000Z",
+      "freshness": "current trigger"
+    }
+  ],
+  "dialect_conflicts": [],
+  "last_trigger_at": "2026-09-12T18:01:18.000Z"
+}

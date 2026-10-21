@@ -1,0 +1,18 @@
+{
+  "viewer_id": "V-0119",
+  "experimentGroup": "treatment",
+  "activeGoal": null,
+  "last_action_at": null,
+  "processed_trigger_ids": [
+    "E-OPEN-0119"
+  ],
+  "decision_ids": [
+    "D-29a818bbb3bb"
+  ],
+  "actions": [],
+  "outcomes": [],
+  "lessons": [],
+  "fact_snapshot": [],
+  "dialect_conflicts": [],
+  "last_trigger_at": "2026-09-12T18:03:56.000Z"
+}

@@ -1,0 +1,112 @@
+{
+  "viewer_id": "V-0065",
+  "experimentGroup": "treatment",
+  "activeGoal": null,
+  "last_action_at": "2026-09-12T18:02:08.000Z",
+  "processed_trigger_ids": [
+    "E-OPEN-0065"
+  ],
+  "decision_ids": [
+    "D-1931e2cbbe20"
+  ],
+  "actions": [
+    {
+      "action_id": "A-1931e2cbbe20",
+      "idempotency_key": "D-1931e2cbbe20",
+      "viewer_id": "V-0065",
+      "decision_id": "D-1931e2cbbe20",
+      "action": "WHATSAPP",
+      "template_id": "TPL-WHATSAPP-5",
+      "content": [
+        "template:TPL-WHATSAPP-5"
+      ],
+      "dialect": "d5",
+      "language": "en",
+      "created_at": "2026-09-12T18:02:08.000Z",
+      "delivery_mode": "mock_replay",
+      "delivery_status": "SIMULATED"
+    }
+  ],
+  "outcomes": [
+    {
+      "outcome_id": "O-6edcd749045b",
+      "viewer_id": "V-0065",
+      "goal_id": "first_full_episode_3d",
+      "status": "SUCCEEDED",
+      "signal": "event:E-SIMULATED-V-0065",
+      "reason": null,
+      "judged_at": "2026-09-20T18:02:00.000Z"
+    }
+  ],
+  "lessons": [
+    "first_full_episode_3d succeeded from event:E-SIMULATED-V-0065."
+  ],
+  "fact_snapshot": [
+    {
+      "key": "signup",
+      "value": "2026-09-12T17:02:08.000Z",
+      "source": "event:E-SIGNUP-V-0065",
+      "observed_at": "2026-09-12T17:02:11.000Z",
+      "freshness": "59m"
+    },
+    {
+      "key": "subscription_status",
+      "value": "trial",
+      "source": "profile:P-V-0065-20260912",
+      "observed_at": "2026-09-11T18:02:08.000Z",
+      "freshness": "warehouse snapshot; observed 1d ago"
+    },
+    {
+      "key": "dialect_profile",
+      "value": "d5",
+      "source": "profile:P-V-0065-20260912",
+      "observed_at": "2026-09-11T18:02:08.000Z",
+      "freshness": "warehouse snapshot; observed 1d ago"
+    },
+    {
+      "key": "paid",
+      "value": true,
+      "source": "event:E-PURCHASE-V-0065",
+      "observed_at": "2026-09-12T17:22:08.000Z",
+      "freshness": "event stream"
+    },
+    {
+      "key": "effective_paid",
+      "value": true,
+      "source": "event:E-PURCHASE-V-0065",
+      "observed_at": "2026-09-12T17:22:08.000Z",
+      "freshness": "event stream"
+    },
+    {
+      "key": "dialect",
+      "value": "d5",
+      "source": "app_setting:E-OPEN-0065",
+      "observed_at": "2026-09-12T18:02:08.000Z",
+      "freshness": "current trigger"
+    },
+    {
+      "key": "language",
+      "value": "en",
+      "source": "app_setting:E-OPEN-0065",
+      "observed_at": "2026-09-12T18:02:08.000Z",
+      "freshness": "current trigger"
+    },
+    {
+      "key": "time_zone",
+      "value": "America/Los_Angeles",
+      "source": "app_setting:E-OPEN-0065",
+      "observed_at": "2026-09-12T18:02:08.000Z",
+      "freshness": "current trigger"
+    },
+    {
+      "key": "consent_whatsapp",
+      "value": true,
+      "source": "consent:C-V-0065-WHATSAPP",
+      "observed_at": "2026-09-12T17:32:08.000Z",
+      "freshness": "latest explicit consent state received by decision time"
+    }
+  ],
+  "dialect_conflicts": [],
+  "last_message_at": "2026-09-12T18:02:08.000Z",
+  "last_trigger_at": "2026-09-12T18:02:08.000Z"
+}

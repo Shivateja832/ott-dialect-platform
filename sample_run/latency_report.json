@@ -1,0 +1,18 @@
+{
+  "decisions": 121,
+  "unique_trigger_latencies": 121,
+  "trigger_attempts": 122,
+  "max_ms": 227,
+  "p95_ms": 33,
+  "budget_ms": 60000,
+  "within_budget": true,
+  "counters": {
+    "duplicateTriggers": 1,
+    "staleTriggers": 1,
+    "providerFailures": 1,
+    "modelCalls": 0,
+    "toolCalls": 120,
+    "callBudgetViolations": 0
+  },
+  "elapsed_ms": 4900
+}
