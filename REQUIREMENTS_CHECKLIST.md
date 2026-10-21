@@ -31,7 +31,7 @@ This check uses the original 279-line challenge brief retained in the conversati
 | Architecture, AI collaboration, limitations notes | Implemented | See the corresponding project documents. |
 | Actual 30-day pack, all 12 goal rules, intervention catalogue, pilot results, live replay script | **Not supplied / not verified** | The brief was available, but those data assets were not present in the workspace. Provide them to certify exact rule definitions, feed mappings, and surprise-event behavior. |
 | Render blueprint | Implemented | `render.yaml` defines a web service and health check. |
-| Public cloud deployment | **Not verified** | Application files are published to [github.com/Shivateja832/ott-dialect-platform](https://github.com/Shivateja832/ott-dialect-platform) at commit `b8bfdb0`. No Render service or public URL has been verified. |
+| Public cloud deployment | Deployed and health-checked | GitHub repository: [ott-dialect-platform](https://github.com/Shivateja832/ott-dialect-platform). Render service: [ott-dialect-platform-demo.onrender.com](https://ott-dialect-platform-demo.onrender.com). `/api/health` returned `status: ok` in `generated_mock` mode. |
 
 ## Local verification
 
@@ -39,4 +39,4 @@ The latest full test run passed all 37 tests. `npm run replay` completed with 12
 
 ## Accurate completion statement
 
-The repository is a locally runnable, recruiter-demo implementation with synthetic replay, channel-policy checks, data-driven rules, and a deployment blueprint. The code has been published to GitHub, but it is **not certified against unavailable challenge input files and is not confirmed deployed**. The exact 12-goal definitions and real replay cannot be inferred from the brief's material-description table. A Render service and public health-check URL still need verification.
+The repository is published to GitHub and deployed to Render as a hosted synthetic replay demo. The public health check is passing. It is **not certified against challenge input files that were not provided**; exact goal definitions, feed mappings, and live-replay results cannot be inferred from the brief's material-description table.
