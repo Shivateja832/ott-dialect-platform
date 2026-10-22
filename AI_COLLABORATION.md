@@ -7,14 +7,20 @@ Claude was used to review the OTT Dialect Platform challenge to check the applic
 ## Requirements review and evidence boundaries
 
 - The review covered the supplied challenge brief and the project files available in the workspace.
-- Requirements-review conclusions were checked against the repository documentation, implementation, and available test/replay evidence. The recorded 38/38 test pass and generated replay are application verification evidence; they are not a Claude-generated test result and do not certify unavailable challenge data.
-- The brief describes a viewer/event data pack, twelve goal definitions, intervention policies, historical pilot records, and a timed replay. The corresponding source data, exact goal catalogue, pilot report/records, and replay script were not included in the available files. Their challenge-specific behavior cannot be certified without those inputs.
-- The application uses generated or normalized records for replay examples. Simulated outcomes are test fixtures, not actual pilot evidence; no missing rules, viewer data, or pilot outcomes were invented.
+- Requirements-review conclusions were checked against the supplied requirements, repository documentation, implementation, and available test/replay evidence. Test results are application verification evidence; they are not a Claude-generated test result.
+- The application uses generated or normalized records for replay examples. Simulated outcomes are explicitly labeled as synthetic.
 - Goal eligibility is determined from configured rules and evidence, not AI-generated viewer claims. Push, WhatsApp, and in-app actions are simulated in replay mode; no live messages are sent and no OTT account is modified.
 - Requirement review is not a substitute for execution evidence: test results come from running the repository's test suite, and deployment status comes from checking the hosted service.
 
 ## Application checks and reproducibility
 
-- The latest recorded local test run passed 38/38 automated tests. The generated replay completed with 121 decisions and 115 outcomes.
-- The public Render health endpoint returned `status: ok` in `generated_mock` mode when checked. This verifies that the health endpoint responded at that time; it does not verify missing challenge assets or historical pilot results.
+- The latest local test run passed 39/39 automated tests. The generated replay completed with 121 decisions and 115 outcomes.
+- The public Render health endpoint returned `status: ok` in `generated_mock` mode when checked.
 - Reproduce locally with `npm test`, `npm run replay`, and `npm start`. The project uses Node.js built-in APIs and requires no API keys for these commands.
+
+## Copilot-assisted implementation and review
+
+- Copilot was used in the follow-up review to inspect the supplied evaluation wording, correct the impact-report denominator to use all randomized assignments, update the dashboard/report labels, and add a regression test for pending and inconclusive outcomes.
+- The user directed the review to use only the requirements they had actually supplied and challenged an earlier assistant score for treating unlisted input files as extra submission requirements. The checklist was revised to map the stated submission, evaluation, and discussion criteria instead of scoring those absent files as deliverables.
+- The changes were checked with the full automated suite (39/39 passed), the replay command (121 decisions and 115 outcomes), and the deployed health/summary endpoints. The sample replay remains synthetic.
+- This log records the user's scope correction as an example of reviewing and rejecting an AI-generated conclusion; it does not claim that the user authored or independently verified the code.
