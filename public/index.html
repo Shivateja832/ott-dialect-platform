@@ -50,19 +50,19 @@
         <section class="content-grid">
           <article class="panel impact-panel">
             <div class="panel-header">
-              <div><div class="section-kicker">CAUSAL READOUT <span>01</span></div><h2>Did the agent help?</h2></div>
+              <div><div class="section-kicker">ASSIGNMENT-BASED READOUT <span>01</span></div><h2>Observed outcomes</h2></div>
               <span class="design-tag">RANDOMIZED HOLDOUT</span>
             </div>
-            <p class="panel-subtitle">Assigned groups stay intact whether a home-page action was served or not.</p>
-            <div class="lift-callout"><div><span class="lift-label">OBSERVED DIFFERENCE</span><strong id="impact-delta">—</strong></div><span class="lift-note">synthetic outcomes<br>not production impact</span></div>
+            <p class="panel-subtitle">Successes divided by all viewers assigned, whether or not an action was served.</p>
+            <div class="lift-callout"><div><span class="lift-label">OBSERVED DIFFERENCE</span><strong id="impact-delta">—</strong></div><span class="lift-note" id="impact-note">synthetic outcomes<br>not production impact</span></div>
             <div class="cohort-row">
               <div class="cohort-title"><span class="cohort-dot treatment"></span><span>TREATMENT</span><small id="treatment-count">—</small></div>
-              <div class="cohort-track"><progress class="cohort-progress treatment-progress" id="treatment-bar" max="100" value="0" aria-label="Treatment success rate"></progress></div>
+              <div class="cohort-track"><progress class="cohort-progress treatment-progress" id="treatment-bar" max="100" value="0" aria-label="Treatment observed successes per assigned viewer"></progress></div>
               <div class="cohort-rate" id="treatment-rate">—</div>
             </div>
             <div class="cohort-row">
               <div class="cohort-title"><span class="cohort-dot holdout"></span><span>HOLDOUT</span><small id="holdout-count">—</small></div>
-              <div class="cohort-track"><progress class="cohort-progress holdout-progress" id="holdout-bar" max="100" value="0" aria-label="Holdout success rate"></progress></div>
+              <div class="cohort-track"><progress class="cohort-progress holdout-progress" id="holdout-bar" max="100" value="0" aria-label="Holdout observed successes per assigned viewer"></progress></div>
               <div class="cohort-rate" id="holdout-rate">—</div>
             </div>
             <div class="impact-foot"><span id="impact-interval">95% interval: —</span><span>INTENTION TO TREAT</span></div>

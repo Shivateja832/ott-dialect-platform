@@ -1049,25 +1049,32 @@ export function buildImpactReport(decisions, outcomes, { synthetic = true } = {}
     const failed = matched.filter((outcome) => outcome?.status === "FAILED").length;
     const inconclusive = matched.filter((outcome) => outcome?.status === "INCONCLUSIVE").length;
     const judged = succeeded + failed;
+    const viewersAssigned = viewers.length;
     metrics[group] = {
-      viewers_assigned: viewers.length,
+      viewers_assigned: viewersAssigned,
       judged,
       successes: succeeded,
       failures: failed,
       inconclusive,
-      pending: viewers.length - judged - inconclusive,
-      rate: judged ? succeeded / judged : 0
+      pending: viewersAssigned - judged - inconclusive,
+      rate: viewersAssigned ? succeeded / viewersAssigned : 0,
+      judged_rate: judged ? succeeded / judged : 0
     };
   }
   const treated = metrics.treatment;
   const control = metrics.holdout;
   const standardError = Math.sqrt(
-    (treated.rate * (1 - treated.rate) / Math.max(treated.judged, 1)) +
-    (control.rate * (1 - control.rate) / Math.max(control.judged, 1))
+    (treated.rate * (1 - treated.rate) / Math.max(treated.viewers_assigned, 1)) +
+    (control.rate * (1 - control.rate) / Math.max(control.viewers_assigned, 1))
+  );
+  const completeFollowUp = Object.values(metrics).every((group) =>
+    group.pending === 0 && group.inconclusive === 0
   );
   return {
     method: "intention_to_treat_randomized_holdout",
-    denominator: "stable randomized assignment for viewers with an evidence-backed goal at first decision; rates use terminally judged matching-goal outcomes, with pending and inconclusive assignments reported separately",
+    estimand: "observed_successes_per_randomized_assignment",
+    denominator: "all viewers assigned to treatment or holdout at their first evidence-backed goal; rate is successes divided by viewers assigned, not only viewers with judged outcomes",
+    follow_up_complete: completeFollowUp,
     groups: metrics,
     absolute_uplift: treated.rate - control.rate,
     approximate_95pct_interval: [treated.rate - control.rate - 1.96 * standardError, treated.rate - control.rate + 1.96 * standardError],
@@ -1076,6 +1083,7 @@ export function buildImpactReport(decisions, outcomes, { synthetic = true } = {}
         ? "Synthetic replay only; this is not a production causal estimate."
         : "Supplied replay data only; this is not evidence of production impact.",
       "Assignment, not served-versus-unserved status, defines the comparison.",
+      "Pending and inconclusive assignments remain in the assigned denominator and are not counted as observed successes; interpret the result as interim observed-success yield until follow-up is complete.",
       "Small samples and multiple goals limit precision; the interval is an approximate normal interval."
     ]
   };

@@ -40,12 +40,14 @@ function markdownImpact(report) {
 ## Result
 
 - Design: ${report.method}
-- Treatment: ${treatment.successes}/${treatment.judged} judged outcomes succeeded (${percent(treatment.rate)}); ${treatment.pending} pending, ${treatment.inconclusive} inconclusive
-- Randomized holdout: ${holdout.successes}/${holdout.judged} judged outcomes succeeded (${percent(holdout.rate)}); ${holdout.pending} pending, ${holdout.inconclusive} inconclusive
+- Treatment: ${treatment.successes}/${treatment.viewers_assigned} assigned viewers with observed success (${percent(treatment.rate)}); ${treatment.judged} judged, ${treatment.pending} pending, ${treatment.inconclusive} inconclusive
+- Treatment judged-only rate (secondary): ${percent(treatment.judged_rate)}
+- Randomized holdout: ${holdout.successes}/${holdout.viewers_assigned} assigned viewers with observed success (${percent(holdout.rate)}); ${holdout.judged} judged, ${holdout.pending} pending, ${holdout.inconclusive} inconclusive
+- Holdout judged-only rate (secondary): ${percent(holdout.judged_rate)}
 - Absolute difference: ${percent(report.absolute_uplift)}
 - Approximate 95% interval: ${percent(report.approximate_95pct_interval[0])} to ${percent(report.approximate_95pct_interval[1])}
 
-The primary comparison follows stable randomized assignment, regardless of whether an intervention was served. This avoids the selection bias in comparing served viewers with everyone else. Rates use terminal outcomes for the initially assigned goal; pending and inconclusive viewers are disclosed rather than silently counted as failures.
+The primary comparison follows stable randomized assignment, regardless of whether an intervention was served. Rates use all assigned viewers as the denominator; pending and inconclusive outcomes remain visible and are not silently removed. When follow-up is incomplete, this is interim observed-success yield, not a finalized treatment-effect estimate.
 
 ## Limitations
 

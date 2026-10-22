@@ -52,11 +52,14 @@ function renderSummary(data) {
   const treatment = data.impact.groups.treatment;
   const holdout = data.impact.groups.holdout;
   const delta = data.impact.absolute_uplift;
+  byId("impact-note").textContent = data.impact.follow_up_complete
+    ? "Follow-up complete; synthetic, not production impact"
+    : "Interim only; follow-up incomplete, not a causal estimate";
   byId("impact-delta").textContent = `${delta > 0 ? "+" : ""}${percent(delta)}`;
   byId("impact-delta").classList.toggle("positive", delta >= 0);
   byId("impact-delta").classList.toggle("negative", delta < 0);
-  byId("treatment-count").textContent = `${treatment.successes}/${treatment.judged} · ${number.format(treatment.viewers_assigned)} assigned`;
-  byId("holdout-count").textContent = `${holdout.successes}/${holdout.judged} · ${number.format(holdout.viewers_assigned)} assigned`;
+  byId("treatment-count").textContent = `${treatment.successes}/${number.format(treatment.viewers_assigned)} assigned · ${number.format(treatment.judged)} judged`;
+  byId("holdout-count").textContent = `${holdout.successes}/${number.format(holdout.viewers_assigned)} assigned · ${number.format(holdout.judged)} judged`;
   byId("treatment-rate").textContent = percent(treatment.rate);
   byId("holdout-rate").textContent = percent(holdout.rate);
   byId("treatment-bar").value = Math.max(0, Math.min(100, treatment.rate * 100));

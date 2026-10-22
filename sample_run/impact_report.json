@@ -1,6 +1,8 @@
 {
   "method": "intention_to_treat_randomized_holdout",
-  "denominator": "stable randomized assignment for viewers with an evidence-backed goal at first decision; rates use terminally judged matching-goal outcomes, with pending and inconclusive assignments reported separately",
+  "estimand": "observed_successes_per_randomized_assignment",
+  "denominator": "all viewers assigned to treatment or holdout at their first evidence-backed goal; rate is successes divided by viewers assigned, not only viewers with judged outcomes",
+  "follow_up_complete": true,
   "groups": {
     "treatment": {
       "viewers_assigned": 93,
@@ -9,7 +11,8 @@
       "failures": 56,
       "inconclusive": 0,
       "pending": 0,
-      "rate": 0.3978494623655914
+      "rate": 0.3978494623655914,
+      "judged_rate": 0.3978494623655914
     },
     "holdout": {
       "viewers_assigned": 22,
@@ -18,7 +21,8 @@
       "failures": 13,
       "inconclusive": 0,
       "pending": 0,
-      "rate": 0.4090909090909091
+      "rate": 0.4090909090909091,
+      "judged_rate": 0.4090909090909091
     }
   },
   "absolute_uplift": -0.011241446725317739,
@@ -29,6 +33,7 @@
   "caveats": [
     "Synthetic replay only; this is not a production causal estimate.",
     "Assignment, not served-versus-unserved status, defines the comparison.",
+    "Pending and inconclusive assignments remain in the assigned denominator and are not counted as observed successes; interpret the result as interim observed-success yield until follow-up is complete.",
     "Small samples and multiple goals limit precision; the interval is an approximate normal interval."
   ]
 }

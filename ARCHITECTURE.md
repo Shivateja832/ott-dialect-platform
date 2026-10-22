@@ -30,7 +30,7 @@ The optional web surface is a read-only Node HTTP server over the generated samp
 
 ## Outcome measurement
 
-The replay judges success only when an event matching the active goal's success signal falls between plan start and deadline. Missing success at deadline becomes `FAILED`; stale opens without enough trustworthy context abstain. A randomized holdout is compared by assigned group (intention-to-treat), not by “served” versus “not served.” The report includes group denominators, rates, absolute difference and an approximate uncertainty interval. The simulator injects outcomes for a reproducible demo; the generated uplift is not a production causal claim.
+The replay judges success only when an event matching the active goal's success signal falls between plan start and deadline. Missing success at deadline becomes `FAILED`; stale opens without enough trustworthy context abstain. A randomized holdout is compared by assigned group (intention-to-treat), not by “served” versus “not served.” The primary metric is observed successes divided by all viewers assigned to each group; pending and inconclusive outcomes remain in that denominator and are reported separately. A judged-only rate is included as a secondary descriptive statistic, not as the primary comparison. The report marks follow-up incomplete when any assignment is pending or inconclusive and describes the difference as interim observed-success yield rather than a finalized treatment effect. It includes an approximate interval based on the assignment-level rates. The simulator injects outcomes for a reproducible demo; the generated uplift is not a production causal claim.
 
 ## Trust boundaries
 

@@ -595,3 +595,29 @@ test("impact report only counts success for the first assigned goal", async () =
   assert.equal(report.groups.treatment.successes, 0);
   assert.equal(report.groups.holdout.successes, 0);
 });
+
+test("impact report retains pending and inconclusive assignments in the primary denominator", async () => {
+  const { buildImpactReport } = await import("../src/core.js");
+  const decisions = [
+    { viewer_id: "T-1", goal: { id: "goal-a" }, experiment_group: "treatment" },
+    { viewer_id: "T-2", goal: { id: "goal-a" }, experiment_group: "treatment" },
+    { viewer_id: "H-1", goal: { id: "goal-a" }, experiment_group: "holdout" },
+    { viewer_id: "H-2", goal: { id: "goal-a" }, experiment_group: "holdout" }
+  ];
+  const report = buildImpactReport(decisions, [
+    { viewer_id: "T-1", goal_id: "goal-a", status: "SUCCEEDED" },
+    { viewer_id: "H-1", goal_id: "goal-a", status: "SUCCEEDED" },
+    { viewer_id: "H-2", goal_id: "goal-a", status: "INCONCLUSIVE" }
+  ]);
+
+  assert.equal(report.estimand, "observed_successes_per_randomized_assignment");
+  assert.equal(report.follow_up_complete, false);
+  assert.equal(report.groups.treatment.viewers_assigned, 2);
+  assert.equal(report.groups.treatment.rate, 0.5);
+  assert.equal(report.groups.treatment.judged_rate, 1);
+  assert.equal(report.groups.treatment.pending, 1);
+  assert.equal(report.groups.holdout.rate, 0.5);
+  assert.equal(report.groups.holdout.inconclusive, 1);
+  assert.equal(report.absolute_uplift, 0);
+  assert.ok(report.caveats.some((caveat) => caveat.includes("interim observed-success yield")));
+});
