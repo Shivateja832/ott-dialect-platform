@@ -927,11 +927,21 @@ export class AgentEngine {
       confidence: goal ? 0.78 : 0.35,
       confidence_reason: goal && reason === "randomized_holdout"
         ? "Goal eligibility has evidence support; the action is suppressed by randomized holdout assignment."
-        : goal && action === "HOME_PAGE"
-          ? "Goal eligibility, current app dialect, catalogue availability and action constraints were checked independently."
+        : goal && status === "SIMULATED"
+          ? `Goal eligibility and independent action checks passed; ${action} was recorded in mock replay mode, not delivered live.`
+          : goal && reason?.startsWith("dependency_unavailable:")
+            ? `Goal eligibility has evidence support, but the action was withheld because a dependency failed: ${reason.slice("dependency_unavailable:".length)}.`
+            : goal && reason?.startsWith("verification_failed:")
+              ? `Goal eligibility has evidence support, but independent action checks blocked publication: ${reason.slice("verification_failed:".length)}.`
+              : goal && reason === "no_safe_intervention_available"
+                ? "Goal eligibility has evidence support, but no safe intervention was available."
+            : goal && reason === "stale_offline_trigger"
+              ? "The goal remains evidence-backed, but this offline trigger was stale, so no intervention was published."
+              : goal && reason === "out_of_order_trigger"
+                ? "The goal remains evidence-backed, but this out-of-order trigger was not allowed to change viewer state."
           : goal
-            ? "Goal eligibility has evidence support, but no intervention was published because a dependency or safety condition blocked it."
-            : "No evidence-backed eligible goal was established, so the agent abstained.",
+            ? `Goal eligibility has evidence support, but no intervention was published: ${reason ?? "no action selected"}.`
+            : `No evidence-backed eligible goal was established, so the agent abstained: ${reason ?? "eligibility not established"}.`,
       evidence,
       assumptions,
       checks,

@@ -78,6 +78,7 @@ test("duplicate trigger is idempotent and an offline-old trigger abstains", asyn
   const decision = await engine.processTrigger(stale);
   assert.equal(decision.action, "NO_ACTION");
   assert.equal(decision.reason, "stale_offline_trigger");
+  assert.match(decision.confidence_reason, /offline trigger was stale/i);
   assert.equal(engine.metrics.staleTriggers, 1);
 });
 
@@ -318,6 +319,7 @@ test("provider failure preserves the evidence-backed plan but prevents publicati
   assert.equal(decision.action, "NO_ACTION");
   assert.equal(decision.goal.id, "first_full_episode_3d");
   assert.match(decision.reason, /dependency_unavailable:mock_catalogue_timeout/);
+  assert.match(decision.confidence_reason, /dependency failed: mock_catalogue_timeout/);
   assert.equal(engine.store.getViewerState("V-TEST").activeGoal.id, "first_full_episode_3d");
 });
 
@@ -377,6 +379,7 @@ test("message action is recorded as simulated only after independent consent and
   const decision = await engine.processTrigger(input.trigger);
   assert.equal(decision.action, "PUSH");
   assert.equal(decision.status, "SIMULATED");
+  assert.match(decision.confidence_reason, /PUSH was recorded in mock replay mode, not delivered live/);
   assert.equal(decision.message_template, "TPL-TEST-PUSH");
   assert.equal(engine.store.allActions()[0].delivery_mode, "mock_replay");
 });
