@@ -2,11 +2,12 @@
 
 ## Claude's role
 
-Claude was used to review the OTT Dialect Platform challenge brief against the application requirements, assess which requirements appeared to be implemented, and identify what could and could not be verified from the available project materials. Claude's role was requirements analysis and evaluation only; it was not used to implement the application, run the automated test suite, or deploy the service. No specific Claude model/version or Claude-generated test report is recorded.
+Claude was used to review the OTT Dialect Platform challenge to check the application requirements, assess which requirements appeared to be implemented, and identify what could and could not be verified from the available project materials. Claude's role was requirements analysis and evaluation only; it was not used to implement the application, run the automated test suite, or deploy the service. No specific Claude model/version or Claude-generated test report is recorded.
 
 ## Requirements review and evidence boundaries
 
 - The review covered the supplied challenge brief and the project files available in the workspace.
+- Requirements-review conclusions were checked against the repository documentation, implementation, and available test/replay evidence. The recorded 38/38 test pass and generated replay are application verification evidence; they are not a Claude-generated test result and do not certify unavailable challenge data.
 - The brief describes a viewer/event data pack, twelve goal definitions, intervention policies, historical pilot records, and a timed replay. The corresponding source data, exact goal catalogue, pilot report/records, and replay script were not included in the available files. Their challenge-specific behavior cannot be certified without those inputs.
 - The application uses generated or normalized records for replay examples. Simulated outcomes are test fixtures, not actual pilot evidence; no missing rules, viewer data, or pilot outcomes were invented.
 - Goal eligibility is determined from configured rules and evidence, not AI-generated viewer claims. Push, WhatsApp, and in-app actions are simulated in replay mode; no live messages are sent and no OTT account is modified.
