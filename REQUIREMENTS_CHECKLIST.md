@@ -1,46 +1,43 @@
-# Challenge requirement and scoring-warning checklist
+# Requirements and evidence checklist
 
-This checklist maps the supplied challenge brief to the implementation and current local evidence. In the warning table below, **Yes means the poor-scoring pattern is present; No means it is avoided in the stated, tested scope.** “No” does not certify against challenge source files that were not supplied.
-
-## “What will score poorly” warnings — presence check
-
-| Poor-scoring pattern present? (Yes = risk is present; No = avoided in tested scope) | Warning in the brief | Evidence and scope |
-|---|---|---|
-| **NO — avoided for the default replay** | One prompt picks titles for every viewer | Decisions are made per viewer by deterministic, evidence-backed rules. The default replay uses no model calls. |
-| **NO — for configured rules and tested evidence cases** | Goals or eligibility asserted without evidence | Goal eligibility is checked against configured rules and viewer facts; insufficient evidence produces abstention. Tests cover twelve configurable rules. The exact challenge goal definitions were not supplied, so their specific semantics remain unverified. |
-| **NO — in replay mode** | Messages sent in the wrong dialect, at night, or without consent | Independent policy checks cover dialect/language, consent, local quiet hours, approved templates, and daily caps. Actions are simulated, not sent. Tests use generated/normalized policy data. |
-| **NO — for the implemented impact report** | Uplift reported from served versus unserved viewers | The impact report compares stable randomized assignment (intention-to-treat), not delivery status. The sample outcomes and reported effect are synthetic, not historical pilot results. |
-| **NO — for tested cases** | Late or duplicate events ignored | Tests exercise stale offline triggers, duplicate idempotency, and out-of-order events; the replay summary records stale and duplicate cases. |
-| **NO — no global viewer sweep** | Every viewer reprocessed after a rule change | Rule corrections are applied when that viewer next triggers. Inactive viewers are not proactively refreshed. |
-| **NO — current code was run through the test suite** | AI-generated code submitted without running tests | The latest recorded local test run passed 38/38 tests. This verifies the suite, not the unavailable challenge replay or all possible inputs. |
-
-## Evaluation categories
-
-The challenge assigns category weights but does not define point-level scoring criteria or a formula for awarding points. This project therefore records evidence and scope rather than claiming a numeric recruiter score.
-
-| Evaluation area | Weight | Implementation evidence | Boundary |
-|---|---:|---|---|
-| Goal and decision quality | 20% | Evidence-backed, data-driven goal selection; deadlines; abstention; tests exercise twelve configurable rules. | Exact challenge goal definitions are unavailable. |
-| Evidence and state | 15% | Source/freshness references, visible conflicts, per-viewer snapshots and audit logs. | File persistence is single-process, not distributed production storage. |
-| Real-time reliability | 15% | Decision latency measured in replay; stale/duplicate and dependency-failure cases tested; local synthetic sustained-load script. | Synthetic local performance does not certify Render capacity. |
-| Verification and safety | 15% | Independent action checks for eligibility, catalogue, dialect/language, consent, quiet hours, approved templates, and message caps. | Exercised with generated/normalized policies; live delivery is intentionally not enabled. |
-| Measurement and learning | 15% | Attribution to configured success signals; intention-to-treat randomized holdout reporting; lessons recorded per viewer. | Sample impact is synthetic; historical pilot records/report were not supplied. |
-| Engineering quality | 10% | Runnable CLI/API, tests, sample replay, architecture, setup instructions. | Challenge-provided replay assets were unavailable for exact reproduction. |
-| Use of AI tools | 10% | AI collaboration log records requirements-review scope and validation boundaries. | A numeric evaluator score cannot be inferred from the log. |
+This checklist separates the written submission requirements from challenge-specific inputs used to verify their behavior. Missing evaluator data is not treated as a missing application file, and it must not be fabricated.
 
 ## Submission requirements
 
-| Required item | Present? | Location / note |
+| Requirement from the brief | Status | Evidence and boundary |
 |---|---|---|
-| Runnable CLI/API, setup instructions, replay command | **Yes** | `README.md`; `npm run replay` runs the generated replay, and the CLI accepts a normalized pack. The challenge's own timed script was not supplied. |
-| Durable per-viewer state, evidence, decisions | **Yes for single-process replay** | `src/store.js`, `sample_run/viewer_state/`, and `sample_run/decisions.jsonl`. |
-| Provider abstraction or API-key-free mock mode | **Yes** | Replay mode uses simulated actions and no external API key. |
-| Tests for late/duplicate trigger, conflict, dependency failure, corrected rule | **Yes** | `tests/`; run `npm test`. |
-| Sample decisions, actions, no-action reasons, outcomes, impact report | **Yes** | `sample_run/`; generated synthetic data and outcomes. |
-| Architecture note | **Yes** | `ARCHITECTURE.md`. |
-| AI collaboration log | **Yes** | `AI_COLLABORATION.md`. |
-| Known limitations note | **Yes** | `KNOWN_LIMITATIONS.md`. |
+| Runnable CLI or API with setup instructions and a replay command | **Met** | `README.md`; `npm run replay` runs the sample, and the CLI accepts a normalized pack. |
+| Durable per-viewer state, evidence references, and decision outputs | **Met for the replay implementation** | `src/store.js`, `sample_run/viewer_state/`, and decision logs. Persistence is single-process file storage, not a distributed production datastore. |
+| Provider abstraction or mock mode without evaluator API keys | **Met** | The generated replay uses mock/simulated actions and no personal API key. |
+| Automated tests for late/duplicate triggers, conflicting sources, tool failure, and a corrected goal rule | **Met for implemented cases** | `tests/`; run `npm test`. The supplied suite has 39 passing tests. |
+| Sample replay with decisions, actions, reasons for no action, outcome judgments, and impact report | **Met with synthetic replay data** | `sample_run/`. The synthetic impact result is not historical pilot evidence. |
+| Architecture note covering ownership, planning, memory, verification, latency, recovery, and trust boundaries | **Met** | `ARCHITECTURE.md`. |
+| AI collaboration log | **Met** | `AI_COLLABORATION.md`. |
+| Known-limitations note | **Met** | `KNOWN_LIMITATIONS.md`. |
 
-## Latest local verification recorded
+## Evaluation evidence
 
-The latest test run passed 38/38 tests. The generated replay completed with 121 decisions and 115 outcomes. `sample_run/latency_report.json` reports 121 decisions, p95 33 ms, maximum 76 ms, and all measured decisions within the 60-second budget. Sample impact results are synthetic. These results are not a challenge-wide completion score.
+The challenge supplies category weights, but no point-by-point scoring rubric or formula. These are evidence notes, not numeric score claims.
+
+| Evaluation area | Weight | Evidence in this application | Boundary to keep explicit |
+|---|---:|---|---|
+| Goal and decision quality | 20% | Evidence-backed configurable goal rules, deadlines, abstention, and tests for twelve configured rules. | The exact challenge goal definitions were not present in this workspace, so their semantics cannot be validated here. |
+| Evidence and state | 15% | Source and freshness references, visible conflicts, per-viewer state snapshots, and audit logs. | The challenge's source data was not present; file persistence is single-process. |
+| Real-time reliability | 15% | Duplicate, stale, out-of-order, and dependency-failure tests; replay latency report. | Local synthetic results do not certify Render or production-scale capacity. |
+| Verification and safety | 15% | Independent action checks and tests for dialect/language, catalogue availability, consent, quiet hours, templates, and caps. | The challenge's actual intervention policy and data were not present. Actions are simulated. |
+| Measurement and learning | 15% | Randomized-assignment comparison, assignment-based primary denominator, outcome attribution, and per-viewer lessons. | Outcomes are synthetic; historical pilot data was not present. Follow-up and statistical limits are described in the report. |
+| Engineering quality | 10% | Runnable CLI/API, tests, reproducible sample, and technical documentation. | The challenge's timed replay script was not present for exact reproduction. |
+| Use of AI tools | 10% | Collaboration and validation boundaries are recorded in `AI_COLLABORATION.md`. | A recruiter's evaluation of the candidate's independent judgment requires discussion; it cannot be proved by a score generated by this app. |
+
+## Challenge-specific inputs versus application deliverables
+
+The submission list above does not list the evaluator's source-data pack as a repository deliverable. However, the exact goal catalogue, source event/profile/catalogue data, intervention policies, historical pilot records, and timed replay are needed to validate challenge-specific behavior. They were not found in this workspace. Their absence is therefore an **external validation limitation**, not something this application can honestly remove by changing its checklist or inventing substitute data.
+
+The application supports a normalized input pack; see `README.md` for its schema and replay command. Once official inputs are supplied, replay them and update this checklist with the observed results. Do not describe synthetic data as official challenge evidence.
+
+## Current verification record
+
+- Automated tests: **39 passed, 0 failed** on the latest recorded run.
+- Sample replay: **121 decisions and 115 outcomes**.
+- The generated impact report uses all randomized assignments as its primary denominator. Its treatment/holdout result is synthetic and is not a production causal estimate.
+- The hosted health endpoint and live summary were checked after the latest published measurement change and responded successfully.
