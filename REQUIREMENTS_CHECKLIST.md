@@ -1,18 +1,18 @@
 # Challenge requirement and scoring-warning checklist
 
-This checklist maps the supplied challenge brief to the implementation and current local evidence. A “No” in the warning table means the application does not exhibit that warned-against pattern for its configured replay flow; it does not certify against challenge source files that were not supplied.
+This checklist maps the supplied challenge brief to the implementation and current local evidence. In the warning table below, **Yes means the poor-scoring pattern is present; No means it is avoided in the stated, tested scope.** “No” does not certify against challenge source files that were not supplied.
 
-## “What will score poorly” warnings
+## “What will score poorly” warnings — presence check
 
-| Warned-against pattern | Present in this application? | Evidence and scope |
+| Poor-scoring pattern present? (Yes = risk is present; No = avoided in tested scope) | Warning in the brief | Evidence and scope |
 |---|---|---|
-| One prompt picks titles for every viewer | **No** | Decisions are made per viewer by deterministic, evidence-backed rules. The default replay uses no model calls. |
-| Goals or eligibility asserted without evidence | **No** | Goal eligibility is checked against configured rules and viewer facts; insufficient evidence produces abstention. Tests cover twelve configurable rules. The exact challenge goal definitions were not supplied. |
-| Messages sent in the wrong dialect, at night, or without consent | **No in replay mode** | Independent policy checks cover dialect/language, consent, local quiet hours, approved templates, and daily caps. Actions are simulated, not sent. Tests use generated/normalized policy data. |
-| Uplift reported from served versus unserved viewers | **No** | The impact report compares stable randomized assignment (intention-to-treat), not delivery status. The sample outcomes and reported effect are synthetic, not historical pilot results. |
-| Late or duplicate events ignored | **No for tested cases** | Tests exercise stale offline triggers, duplicate idempotency, and out-of-order events; the replay summary records stale and duplicate cases. |
-| Every viewer reprocessed after a rule change | **No** | Rule corrections are applied when that viewer next triggers; there is no global viewer sweep. Inactive viewers are not proactively refreshed. |
-| AI-generated code submitted without running tests | **No for the current recorded validation** | The latest recorded local test run passed 38/38 tests. This verifies the suite, not the unavailable challenge replay or all possible inputs. |
+| **NO — avoided for the default replay** | One prompt picks titles for every viewer | Decisions are made per viewer by deterministic, evidence-backed rules. The default replay uses no model calls. |
+| **NO — for configured rules and tested evidence cases** | Goals or eligibility asserted without evidence | Goal eligibility is checked against configured rules and viewer facts; insufficient evidence produces abstention. Tests cover twelve configurable rules. The exact challenge goal definitions were not supplied, so their specific semantics remain unverified. |
+| **NO — in replay mode** | Messages sent in the wrong dialect, at night, or without consent | Independent policy checks cover dialect/language, consent, local quiet hours, approved templates, and daily caps. Actions are simulated, not sent. Tests use generated/normalized policy data. |
+| **NO — for the implemented impact report** | Uplift reported from served versus unserved viewers | The impact report compares stable randomized assignment (intention-to-treat), not delivery status. The sample outcomes and reported effect are synthetic, not historical pilot results. |
+| **NO — for tested cases** | Late or duplicate events ignored | Tests exercise stale offline triggers, duplicate idempotency, and out-of-order events; the replay summary records stale and duplicate cases. |
+| **NO — no global viewer sweep** | Every viewer reprocessed after a rule change | Rule corrections are applied when that viewer next triggers. Inactive viewers are not proactively refreshed. |
+| **NO — current code was run through the test suite** | AI-generated code submitted without running tests | The latest recorded local test run passed 38/38 tests. This verifies the suite, not the unavailable challenge replay or all possible inputs. |
 
 ## Evaluation categories
 
