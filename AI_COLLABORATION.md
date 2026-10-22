@@ -17,8 +17,3 @@ Claude was used to review the OTT Dialect Platform challenge brief against the a
 - The latest recorded local test run passed 38/38 automated tests. The generated replay completed with 121 decisions and 115 outcomes.
 - The public Render health endpoint returned `status: ok` in `generated_mock` mode when checked. This verifies that the health endpoint responded at that time; it does not verify missing challenge assets or historical pilot results.
 - Reproduce locally with `npm test`, `npm run replay`, and `npm start`. The project uses Node.js built-in APIs and requires no API keys for these commands.
-
-## Current document revision
-
-- Copilot SDK in VS Code was used in this session to revise this document for clarity and to reflect Claude's requirements-review-only role. This does not attribute application implementation, test execution, or deployment to Copilot.
-- This revision changes documentation only. No application source code, tests, runtime behavior, or deployment settings were changed, and no tests were rerun for this documentation-only revision.
